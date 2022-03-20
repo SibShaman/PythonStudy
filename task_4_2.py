@@ -12,13 +12,32 @@
 # Дата должна быть в виде объекта date. Подумайте, как извлечь дату из ответа, какой тип данных лучше использовать в ответе функции?
 
 
-
-from urllib import response
-from requests import get
-
+import urllib.request
+import xml.etree.ElementTree as ET
 
 
-response = get('http://www.cbr.ru/scripts/XML_daily.asp')
-print(type(response))
-print(dir(response))
 
+def currency_rates(numcode):
+    URL=urllib.request.urlopen("http://www.cbr.ru/scripts/XML_daily.asp")
+    tree = ET.parse(URL)
+    root = tree.getroot()   #корневой элемент
+
+    for valute in root.findall('Valute'):
+        # numcode =  int(valute.find('NumCode').text)
+        charcode = valute.find('CharCode').text       # получение значений из тегов
+        # name = valute.find('Name').text
+        nominal =  float(valute.find('Nominal').text)
+        value = valute.find('Value').text
+        float_value = float('.'.join(value.split(',')))  # перевод текстового значения в тип float
+        
+        course = float_value/nominal
+        if str(numcode).upper() == charcode:
+            return course
+
+print(currency_rates('usd'))
+
+
+
+# if __name__ == '__main__':
+#    test = currency_rates(sys.argv)
+#    print(test)
