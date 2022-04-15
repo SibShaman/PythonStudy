@@ -1,0 +1,21 @@
+my_projects
+  my_projects\settings
+    my_projects\settings\init.py
+    my_projects\settings\dev.py
+    my_projects\settings\prod.py
+  my_projects\mainapp
+    my_projects\mainapp\init.py
+    my_projects\mainapp\models.py
+    my_projects\mainapp\views.py
+    my_projects\mainapp\temlpates
+      my_projects\mainapp\temlpates\mainapp
+        my_projects\mainapp\temlpates\mainapp\base.html
+        my_projects\mainapp\temlpates\mainapp\index.html
+  my_projects\authapp
+    my_projects\authapp\init.py
+    my_projects\authapp\models.py
+    my_projects\authapp\views.py
+    my_projects\authapp\templates
+      my_projects\authapp\templates\authapp
+        my_projects\authapp\templates\authapp\base.html
+        my_projects\authapp\templates\authapp\index.html
