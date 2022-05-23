@@ -16,29 +16,31 @@
 
 
 
+from functools import wraps
 
 
-def val_cheker(x=0):
-    def cheker_value(func):
+def val_cheker(temp_func): 
+    def val_decor(func):
+        @wraps(func)
+        def dekor_cheker(x):
+            try:
+                if temp_func(x):
+                    return func(x)
+                else:
+                    raise ValueError
+
+            except ValueError:
+                return f'wrong val {x}'
+                  
         
-        def wrapper(*args):           
-            if x > 0:
-                msg = func(*args)       
-            if x < 0:
-                msg = print('wrong val {x}')
-                raise ValueError(msg)
-            
-            return msg
 
-        return wrapper
-    return cheker_value
+        return dekor_cheker
+    return val_decor
+
+ 
+@val_cheker(lambda x: x > 0)
+def calc_cube(x):
+    return x**3
 
 
-
-@val_cheker(lambda x: x>0)
-def calc_cube(num):
-    return num**3
-
-
-a = calc_cube(5)
-print(a)
+print(calc_cube(-5))
