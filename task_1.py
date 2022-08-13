@@ -9,11 +9,11 @@ def first_way():
     your_day = int(input('Введите номер дня недели'))
 
     if  your_day > 7:
-        print('Нет такого дня недели') 
+        return 'Нет такого дня недели'
     elif your_day != 6 and your_day != 7:
-        print('Нет - это рабочий день')     
+        return 'Нет - это рабочий день'     
     else:
-        print('Да - это выходной день')
+        return 'Да - это выходной день'
 
 
 def second_way():
