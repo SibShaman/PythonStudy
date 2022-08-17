@@ -4,3 +4,9 @@
 # - 0,56 -> 11
 
 
+num = list(input('Введите любое число: '))
+result = 0
+for i in range(len(num)):
+    result+=int(num[i].replace(',' , '0'))
+
+print(result)
