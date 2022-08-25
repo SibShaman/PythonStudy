@@ -2,7 +2,6 @@
 # Задача - сформировать файл, содержащий сумму многочленов.
 
 
-from curses.ascii import isdigit
 from itertools import zip_longest
 
 
