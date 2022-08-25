@@ -23,3 +23,8 @@ temp_list = (reversed(temp_list))
 result_str = ' '.join(temp_list)
 
 print(f'{result_str} = 0')
+
+
+
+with open('file_two.txt', 'w', encoding='utf8') as data:
+    data.write(f'{result_str} = 0')
