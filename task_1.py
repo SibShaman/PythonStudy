@@ -5,5 +5,10 @@
 import math
 
 
-accurate = int(input('Введите необходимую точность: '))
-print(round(math.pi, accurate))
+count =0
+accurate = float(input('Введите необходимую точность: '))
+while accurate<1:
+    res = accurate*10
+    accurate = res
+    count+=1
+print(round(math.pi, int(count)))
