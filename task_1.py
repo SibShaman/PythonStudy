@@ -11,4 +11,5 @@ while accurate<1:
     res = accurate*10
     accurate = res
     count+=1
+print(math.pi)
 print(round(math.pi, int(count)))
