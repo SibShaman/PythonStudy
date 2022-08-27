@@ -52,11 +52,11 @@ def bot_intellect(num, _list):
 count_candy = 0
 while MAX_CANDY!=0:
     if player_choice == 1:
-        while quantity_candy_player < 28:
-            quantity_candy_player = int(input('Введите количество конфет которое хотите взять: '))
+        quantity_candy_player = int(input('Введите количество конфет которое хотите взять: '))
+        if quantity_candy_player < 28 and quantity_candy_player > 1:
+            count_candy+=quantity_candy_player
         else:
-            print('Вы неправильно ввели количество конфет')
-        count_candy+=quantity_candy_player
+            print('Вы неправильно ввели число, переход хода')
         print(f'на руках {count_candy} конфет из 2021')
 
         quantity_candy_bot = bot_intellect(count_candy, point_win_list)
