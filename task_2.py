@@ -10,7 +10,7 @@
 from random import randint
 
 
-MAX_CANDY = 2021
+MAX_CANDY = 137
 MAX_VALUE = 28
 
 # Определяем выигрышные позиции из количества конфет на столе
@@ -26,7 +26,7 @@ def bot_intellect(num):
             break
         point_win_list.append(point_win)    
     point_win_list = point_win_list[::-1]
-    print(point_win_list)
+    # print(point_win_list)
     quantity_candy = 0
     for i in range(len(point_win_list)):
         if point_win_list[0] > num:
@@ -40,22 +40,43 @@ def bot_intellect(num):
 
 # Выбор первого хода
 player_choice = randint(0,1)
-# print(player_choice)
+if player_choice == 1:
+    print('Вы ходите первым ')
+else:
+    print('Вы проиграли жеребьевку, первый ход за ботом')
 
 # числовой ряд по ходам
 count_candy = 0
-while MAX_CANDY!=0:
+while count_candy<(MAX_CANDY-MAX_VALUE):
     if player_choice == 1:
-        quantity_candy_player = int(input('Введите количество конфет которое хотите взять: '))
-        if quantity_candy_player < 29 and quantity_candy_player > 1:
-            count_candy+=quantity_candy_player
-        else:
-            print('Вы неправильно ввели число, переход хода')
+        # ход игрока
+        while True:
+            quantity_candy_player = int(input('Введите количество конфет которое хотите взять: '))
+            if quantity_candy_player < 29 and quantity_candy_player > 0:
+                break
+            else:
+                print('Вы неправильно ввели число, поробуйте еще раз ')
+        count_candy+=quantity_candy_player
         print(f'на руках {count_candy} конфет из 2021')
-
+        # ход компьютера
         quantity_candy_bot = bot_intellect(count_candy)
         print(f'Бот взял {quantity_candy_bot} конфет')
+        count_candy+=quantity_candy_bot
         print(f'на руках {count_candy} конфет из 2021')
-    else:
-        print('Ход бота, попробуй еще')
-        break
+    elif player_choice == 1:
+        # ход компьютера
+        quantity_candy_bot = bot_intellect(count_candy)
+        print(f'Бот взял {quantity_candy_bot} конфет')
+        count_candy+=quantity_candy_bot
+        print(f'на руках {count_candy} конфет из 2021')
+        # ход игрока
+        while True:
+            quantity_candy_player = int(input('Введите количество конфет которое хотите взять: '))
+            if quantity_candy_player < 29 and quantity_candy_player > 0:
+                break
+            else:
+                print('Вы неправильно ввели число, попробуйте еще раз ')
+        count_candy+=quantity_candy_player
+        print(f'на руках {count_candy} конфет из 2021')
+else:
+    print('Вы вышли за пределы диапазона')
