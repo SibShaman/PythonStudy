@@ -6,10 +6,20 @@
 # Входные данные:
 # 12W1B12W3B24W1B14W
 
+import itertools
+
+
+
 chek_str = 'WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW'
 
 
-def compression(_str):
+def compression_one(text):
+    for char, same in itertools.groupby(text):
+        count = sum(1 for _ in same)
+        yield char if count == 1 else str(count)+char
+
+
+def compression_two(_str):
     encoding = ''
     prev_char = ''
     count = 1
@@ -41,6 +51,7 @@ def decompression(_str):
     return decoding
 
 
-a = compression(chek_str)
+print(*compression_one(chek_str))
+a = compression_two(chek_str)
 print(a)
 print(decompression(a))
