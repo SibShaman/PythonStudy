@@ -8,6 +8,7 @@
 
 chek_str = 'WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW'
 
+
 def compression(_str):
     encoding = ''
     prev_char = ''
@@ -25,19 +26,19 @@ def compression(_str):
             count += 1
     else:
         encoding += str(count) + prev_char
-        return encoding
+    return encoding
 
 
 def decompression(_str):
-    decode = ''
+    decoding = ''
     count = ''
-    for char in _str: # If the character is numerical...
-        if char.isdigit(): # ...append it to our count
+    for char in _str:
+        if char.isdigit():
             count += char
         else:
-            decode += char * int(count)
+            decoding += char * int(count)
             count = ''
-    return decode
+    return decoding
 
 
 a = compression(chek_str)
