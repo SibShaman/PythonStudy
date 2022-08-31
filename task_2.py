@@ -10,7 +10,7 @@
 from random import randint
 
 
-MAX_CANDY = 137
+MAX_CANDY = 120
 MAX_VALUE = 28
 
 # Определяем выигрышные позиции из количества конфет на столе
@@ -24,9 +24,9 @@ def bot_intellect(num):
         point_win = temp_point_win
         if point_win < 0:
             break
-        point_win_list.append(point_win)    
+        point_win_list.append(point_win)
     point_win_list = point_win_list[::-1]
-    # print(point_win_list)
+    print(point_win_list)
     quantity_candy = 0
     for i in range(len(point_win_list)):
         if point_win_list[0] > num:
@@ -40,14 +40,14 @@ def bot_intellect(num):
 
 # Выбор первого хода
 player_choice = randint(0,1)
-if player_choice == 1:
-    print('Вы ходите первым ')
-else:
-    print('Вы проиграли жеребьевку, первый ход за ботом')
+# if player_choice == 1:
+#     print('Вы ходите первым ')
+# else:
+#     print('Вы проиграли жеребьевку, первый ход за ботом')
 
 # числовой ряд по ходам
 count_candy = 0
-while count_candy<(MAX_CANDY-MAX_VALUE):
+while MAX_CANDY>count_candy:
     if player_choice == 1:
         # ход игрока
         while True:
@@ -63,7 +63,7 @@ while count_candy<(MAX_CANDY-MAX_VALUE):
         print(f'Бот взял {quantity_candy_bot} конфет')
         count_candy+=quantity_candy_bot
         print(f'на руках {count_candy} конфет из 2021')
-    elif player_choice == 1:
+    elif player_choice == 0:
         # ход компьютера
         quantity_candy_bot = bot_intellect(count_candy)
         print(f'Бот взял {quantity_candy_bot} конфет')
