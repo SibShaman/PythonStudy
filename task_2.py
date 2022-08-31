@@ -40,10 +40,10 @@ def bot_intellect(num):
 
 # Выбор первого хода
 player_choice = randint(0,1)
-# if player_choice == 1:
-#     print('Вы ходите первым ')
-# else:
-#     print('Вы проиграли жеребьевку, первый ход за ботом')
+if player_choice == 1:
+    print('Вы ходите первым ')
+else:
+    print('Вы проиграли жеребьевку, первый ход за ботом')
 
 # числовой ряд по ходам
 count_candy = 0
@@ -58,17 +58,32 @@ while MAX_CANDY>count_candy:
                 print('Вы неправильно ввели число, поробуйте еще раз ')
         count_candy+=quantity_candy_player
         print(f'на руках {count_candy} конфет из 2021')
+
+        if (MAX_CANDY-MAX_VALUE)<count_candy and count_candy<MAX_CANDY:
+            print('Вы проиграли')
+            break
+
         # ход компьютера
         quantity_candy_bot = bot_intellect(count_candy)
         print(f'Бот взял {quantity_candy_bot} конфет')
         count_candy+=quantity_candy_bot
         print(f'на руках {count_candy} конфет из 2021')
+
+        if (MAX_CANDY-MAX_VALUE)<count_candy and count_candy<MAX_CANDY:
+            print('Вы выиграли')
+            break
+
     elif player_choice == 0:
         # ход компьютера
         quantity_candy_bot = bot_intellect(count_candy)
         print(f'Бот взял {quantity_candy_bot} конфет')
         count_candy+=quantity_candy_bot
         print(f'на руках {count_candy} конфет из 2021')
+
+        if (MAX_CANDY-MAX_VALUE)<count_candy and count_candy<MAX_CANDY:
+            print('Вы выиграли')
+            break
+
         # ход игрока
         while True:
             quantity_candy_player = int(input('Введите количество конфет которое хотите взять: '))
@@ -78,5 +93,7 @@ while MAX_CANDY>count_candy:
                 print('Вы неправильно ввели число, попробуйте еще раз ')
         count_candy+=quantity_candy_player
         print(f'на руках {count_candy} конфет из 2021')
-else:
-    print('Вы вышли за пределы диапазона')
+
+        if (MAX_CANDY-MAX_VALUE)<count_candy and count_candy<MAX_CANDY:
+            print('Вы проиграли')
+            break
