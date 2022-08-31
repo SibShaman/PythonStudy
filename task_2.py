@@ -10,7 +10,7 @@
 from random import randint
 
 
-MAX_CANDY = 120
+MAX_CANDY = 2021
 MAX_VALUE = 28
 
 # Определяем выигрышные позиции из количества конфет на столе
