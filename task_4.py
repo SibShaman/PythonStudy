@@ -6,4 +6,8 @@
 
 
 num = int(input('Введите количество чисел в последовательности: '))
-list_one = list(range(1, num+1))
+
+my_list = []
+my_list = [my_list[-1]
+           for x in range(1, num+1) if not my_list.append(x*my_list[-1] if my_list else 1)]
+print(my_list)
