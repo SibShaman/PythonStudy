@@ -2,9 +2,9 @@
 
 # 16. Задать список из n чисел последовательности и вывести на экран их сумму.
 
-from functools import reduce
-
 
 num = int(input('Введите количество чисел в последовательности: '))
-sum_num = reduce(lambda x, y: x+y, range(1, num+1))
-print(f'Сумма чисел в последовательности = {sum_num}')
+sum_one = [round((1+(1/x))**x, 2) for x in range(1, num+1)]
+# sum_num = reduce(lambda x, y: x+y, range(1, num+1))
+print(sum_one)
+print(f'Сумма чисел в последовательности = {sum(sum_one)}')

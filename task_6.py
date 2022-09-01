@@ -5,38 +5,23 @@
 # Позиции хранятся в файле file.txt в одной строке одно число.
 
 
-from ntpath import join
+from random import randint
 
+num = randint(10, 21)
+list_one = [i for i in range(-num, num+1)]
 
-num = int(input('Введите число: '))
-list_one = list(range(-num, num+1))
-
+print(list_one)
 with open('file.txt', 'w+', encoding='utf8') as data:
-    data.write(str(list_one) + '\n')
-
- # for i in range(1, num+1):
- #     a = randint(-num, num)
- #     data.write(str(a) + '\n')
-
-# pos = 1
-# temp_list = []
-# while pos != 0:
-#     pos = int(
-#         input('Введите позиции которые вы хотите перемножить или 0 для выхода: '))
-#     temp_list.append(pos)
-#     if pos > num:
-#         print('Вы вышли за пределы диапазона, попробуйте еще или 0 для выхода ')
-#         temp_list.remove(pos)
-#     elif pos == 0:
-#         temp_list.remove(pos)
-#         break
-
-# res = 1
-# with open('file.txt', 'r') as final_data:
-#     pass
-#     # for i, line in enumerate(final_data):
-#     #     if (i+1) in temp_list:
-#     #         res *= int(line)
+    for i in range(1, (num//2)):
+        data.write(f'{randint(0, num*2)}\n')
 
 
-# print(list_one)
+with open('file.txt', 'r', encoding='utf8') as final_data:
+    list_two = [int(i[:-1]) for i in final_data]
+
+print(list_two)
+
+res = 1
+for i in list_two:
+    res *= list_one[i]
+print(res)
