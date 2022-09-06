@@ -1,19 +1,26 @@
 """ modul for send data in files,
         get data from files"""
 
+
 import user_interface as ui
 import views
+import csv
 
 
-def send_data():
-    ui.add_contact()
-    with open('phone_book.txt', 'a', encoding='utf8') as file:
-        file.write(f"{' '.join(ui.contact_list)}\n")
+file_name = 'phone_book.csv'
 
 
-def get_data():
-    pass
+def write_data():
+    """ Пишем в файл csv"""
+    with open(file_name, 'w', newline='') as wf:
+        fieldnames = ['id', 'first_name', 'second_name', 'phone', 'descriptor']
+        writer = csv.DictWriter(wf, fieldnames=fieldnames)
+        return writer
 
 
-# print(send_data())
-send_data()
+def read_data(file_name: str):
+    """Читаем из файла csv"""
+    with open(file_name, 'r', encoding='utf8') as rf:
+        dataset = csv.reader(rf, delimiter=' ')
+        for row in dataset:
+            print(','.join(row))
