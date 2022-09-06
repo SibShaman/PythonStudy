@@ -14,25 +14,18 @@ def add_contact():
         'phone': '',
         'descriptor': '',
     }
-    first_name = input('Введите имя: ')
-    second_name = input('Введите фамилию: ')
-    phone = input('Введите номер телефона: ')
-    descriptor = input('Введите описание: ')
-    contact_dict['first_name'] = first_name
-    contact_dict['second_name'] = second_name
-    contact_dict['phone'] = phone
-    contact_dict['descriptor'] = descriptor
+    contact_dict['first_name'] = input('Введите имя: ')
+    contact_dict['second_name'] = input('Введите фамилию: ')
+    contact_dict['phone'] = input('Введите номер телефона: ')
+    contact_dict['descriptor'] = input('Введите описание: ')
 
     contact_list.append(contact_dict)
     return contact_list
 
 
-# add_contact()
-# print(contact_dict)
-
-
 def find_contact():
     """Поиск контакта в телефонной книге"""
+    pass
 
 
 def change_contact():

@@ -15,17 +15,20 @@ def write_data():
         fieldnames = ['first_name', 'second_name', 'phone', 'descriptor']
         writer = csv.DictWriter(
             write_file, fieldnames=fieldnames, delimiter=' ')
-        temp_ = ui.add_contact()
-        for line in temp_:
+        for line in ui.contact_list:
             writer.writerow(line)
 
 
-write_data()
+# ui.add_contact()
+# write_data()
 
 
-# def read_data(file_name: str):
-#     """Читаем из файла csv"""
-#     with open(file_name, 'r', encoding='utf8') as read_file:
-#         dataset = csv.reader(read_file, delimiter=' ')
-#         for row in dataset:
-#             print(','.join(row))
+def read_data():
+    """Читаем из файла csv"""
+    with open(file_name, 'r', encoding='utf8') as read_file:
+        dataset = csv.reader(read_file, delimiter=' ')
+        for row in dataset:
+            print(', '.join(row))
+
+
+# read_data()
