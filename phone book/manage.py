@@ -1,12 +1,13 @@
 """ modul for write data in files,
         read data from files"""
-
+import os
 import csv
 import user_interface as ui
 # import views
 
 
 file_name = 'phone_book.csv'
+file_exists = os.path.isfile(file_name)
 
 
 def write_data():
@@ -15,12 +16,15 @@ def write_data():
         fieldnames = ['first_name', 'second_name', 'phone', 'descriptor']
         writer = csv.DictWriter(
             write_file, fieldnames=fieldnames, delimiter=' ')
+        if not file_exists:
+            writer.writeheader()
         for line in ui.contact_list:
             writer.writerow(line)
 
 
 # ui.add_contact()
 # write_data()
+ui.find_contact()
 
 
 def read_data():

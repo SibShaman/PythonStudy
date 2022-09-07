@@ -1,8 +1,9 @@
 """User Interface"""
 # методы  для ввода и изменения информации в справочнике
-
+import csv
 
 contact_list = []
+file_name = 'phone_book.csv'
 
 
 def add_contact():
@@ -25,10 +26,20 @@ def add_contact():
 
 def find_contact():
     """Поиск контакта в телефонной книге"""
-    pass
+    find_name = input('Введите имя кого вы хотите найти: ')
+    find_phone = input('Введите номер телефона кого вы хотите найти: ')
+    with open(file_name, 'r', encoding='utf8') as find_file:
+        reader = csv.DictReader(find_file, delimiter=' ', )
+        first_name, second_name, phone, descriptor = reader.fieldnames
+        for row in reader:
+            if row[first_name] == find_name or row[phone] == find_phone:
+                print(row[first_name], row[second_name],
+                      row[phone], row[descriptor])
+        # else:
+        #     print('Нет такого контакта')
 
 
-def change_contact():
+def update_contact():
     """ Изменение контакта в тел.книге"""
     pass
 
