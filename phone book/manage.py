@@ -24,7 +24,7 @@ def write_data():
 
 # ui.add_contact()
 # write_data()
-ui.find_contact()
+# ui.find_contact()
 
 
 def read_data():
@@ -35,4 +35,5 @@ def read_data():
             print(', '.join(row))
 
 
-# read_data()
+read_data()
+print(ui.update_contact())

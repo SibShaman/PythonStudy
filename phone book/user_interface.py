@@ -41,7 +41,19 @@ def find_contact():
 
 def update_contact():
     """ Изменение контакта в тел.книге"""
-    pass
+    update_name = input('Введите имя кого вы хотите изменить: ')
+    update_phone = input('Введите номер телефона кого вы хотите заменить: ')
+    with open(file_name, 'r+', encoding='utf8') as find_file:
+        reader = csv.DictReader(find_file, delimiter=' ', )
+        first_name, second_name, phone, descriptor = reader.fieldnames
+        for row in reader:
+            if row[first_name] == update_name or row[phone] == update_phone:
+                row['first_name'] = input('Введите имя: ')
+                row['second_name'] = input('Введите фамилию: ')
+                row['phone'] = input('Введите номер телефона: ')
+                row['descriptor'] = input('Введите описание: ')
+                contact_list.append(row)
+                return contact_list
 
 
 def del_contact():
