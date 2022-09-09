@@ -2,7 +2,7 @@
         read data from files"""
 import os
 import csv
-# import user_interface as ui
+import user_interface as ui
 # import views
 
 
@@ -40,4 +40,5 @@ def show_data(file: str) -> str:
             print(', '.join(row))
 
 
+write_data(ui.contact_list, FILE_NAME)
 # print(read_data(FILE_NAME))
