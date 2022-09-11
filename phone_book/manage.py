@@ -2,12 +2,6 @@
         read data from files"""
 import os
 import csv
-import user_interface as ui
-# import views
-
-
-FILE_NAME = 'phone_book.csv'
-file_exists = os.path.isfile(FILE_NAME)
 
 
 def write_data(list_: list, file: str):
@@ -16,7 +10,7 @@ def write_data(list_: list, file: str):
         fieldnames = ['first_name', 'second_name', 'phone', 'descriptor']
         writer = csv.DictWriter(
             write_file, fieldnames=fieldnames, delimiter=' ')
-        if not file_exists:
+        if not os.path.isfile(file):
             writer.writeheader()
         for line in list_:
             writer.writerow(line)
@@ -38,7 +32,3 @@ def show_data(file: str) -> str:
         reader = csv.reader(read_file, delimiter=' ')
         for row in reader:
             print(', '.join(row))
-
-
-write_data(ui.contact_list, FILE_NAME)
-# print(read_data(FILE_NAME))
