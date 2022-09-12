@@ -11,7 +11,6 @@ def add_contact():
         'phone': '',
         'descriptor': '',
     }
-
     contact_dict['first_name'] = input('Введите имя: ')
     contact_dict['second_name'] = input('Введите фамилию: ')
     contact_dict['phone'] = input('Введите номер телефона: ')
@@ -39,17 +38,16 @@ def update_contact(update_list: list) -> list:
     """ Изменение контакта в тел.книге"""
     update_name = input('Введите имя кого вы хотите изменить: ')
     update_phone = input('Введите номер телефона кого вы хотите заменить: ')
-    list_ = []
+
     for item in update_list:
         if item[0] == update_name and item[2] == update_phone:
+            update_list.remove(item)
             item[0] = input('Введите имя: ')
             item[1] = input('Введите фамилию: ')
             item[2] = input('Введите номер телефона: ')
             item[3] = input('Введите описание: ')
-            list_.append(item)
-        else:
-            return item
-    return list_
+            update_list.append(item)
+    return update_list
 
 
 def del_contact():
