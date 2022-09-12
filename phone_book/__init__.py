@@ -1,4 +1,5 @@
 """ module phone_book logic"""
+from .manage import write_data
 from .manage import read_data
 from .user_interface import find_contact
 
@@ -14,6 +15,6 @@ def search_contact():
 
 def changed_contact():
     """Изменение контакта"""
-    temp = read_data(FILE_NAME)
+    temp_list = read_data(FILE_NAME)
     # пока ничего не изменяет, надо вписать функцию по изменению и перезаписи всего файла
-    return temp
+    return write_data(temp_list, FILE_NAME)
