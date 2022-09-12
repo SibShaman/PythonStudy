@@ -42,22 +42,14 @@ def update_contact(update_list: list) -> list:
     list_ = []
     for item in update_list:
         if item[0] == update_name and item[2] == update_phone:
-            add_contact()
-
-    # with open(file_name, 'r+', encoding='utf8') as find_file:
-    #     reader = csv.DictReader(find_file, delimiter=' ', )
-    #     first_name, second_name, phone, descriptor = reader.fieldnames
-
-    #     fieldnames = ['first_name', 'second_name', 'phone', 'descriptor']
-    #     writer = csv.DictWriter(
-    #         find_file, fieldnames=fieldnames, delimiter=' ')
-
-    #     for row in reader:
-    #         if row[first_name] == update_name or row[phone] == update_phone:
-    #             row['first_name'] = input('Введите имя: ')
-    #             row['second_name'] = input('Введите фамилию: ')
-    #             row['phone'] = input('Введите номер телефона: ')
-    #             row['descriptor'] = input('Введите описание: ')
+            item[0] = input('Введите имя: ')
+            item[1] = input('Введите фамилию: ')
+            item[2] = input('Введите номер телефона: ')
+            item[3] = input('Введите описание: ')
+            list_.append(item)
+        else:
+            return item
+    return list_
 
 
 def del_contact():
