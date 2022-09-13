@@ -2,20 +2,19 @@
 # методы  для ввода и изменения информации в справочнике
 
 
-def add_contact():
+def add_contact() -> list:
     """ Добавление в тел.книгу"""
-    add_list = []
     contact_dict = {
         'first_name': '',
         'second_name': '',
         'phone': '',
         'descriptor': '',
     }
+    add_list = []
     contact_dict['first_name'] = input('Введите имя: ')
     contact_dict['second_name'] = input('Введите фамилию: ')
     contact_dict['phone'] = input('Введите номер телефона: ')
     contact_dict['descriptor'] = input('Введите описание: ')
-
     add_list.append(contact_dict)
     return add_list
 
@@ -40,17 +39,14 @@ def update_contact(update_list: list) -> list:
     update_phone = input('Введите номер телефона кого вы хотите заменить: ')
 
     for item in update_list:
-        if item[0] == update_name and item[2] == update_phone:
+        if item['first_name'] == update_name and item['phone'] == update_phone:
             update_list.remove(item)
-            item[0] = input('Введите имя: ')
-            item[1] = input('Введите фамилию: ')
-            item[2] = input('Введите номер телефона: ')
-            item[3] = input('Введите описание: ')
+            item['first_name'] = input('Введите имя: ')
+            item['second_name'] = input('Введите фамилию: ')
+            item['phone'] = input('Введите номер телефона: ')
+            item['descriptor'] = input('Введите описание: ')
             update_list.append(item)
     return update_list
-
-
-
 
 
 def del_contact():
