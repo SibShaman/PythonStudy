@@ -50,6 +50,9 @@ def update_contact(update_list: list) -> list:
     return update_list
 
 
+
+
+
 def del_contact():
     """ Удаление контакта из телефонной книги"""
     pass
