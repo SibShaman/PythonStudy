@@ -2,6 +2,7 @@
         read data from files"""
 import os
 import csv
+import typing
 
 
 def write_data(list_: list, file: str):
