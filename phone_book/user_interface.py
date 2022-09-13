@@ -2,7 +2,7 @@
 # методы  для ввода и изменения информации в справочнике
 
 
-def add_contact() -> list:
+def add_in_book() -> list:
     """ Добавление в тел.книгу"""
     contact_dict = {
         'first_name': '',
@@ -19,13 +19,13 @@ def add_contact() -> list:
     return add_list
 
 
-def find_contact(find_list: list) -> list:
+def find_in_book(find_list: list) -> list:
     """Поиск контакта в телефонной книге"""
     find_name = input('Введите имя кого вы хотите найти: ')
     find_phone = input('Введите номер телефона кого вы хотите найти: ')
     list_ = []
     for item in find_list:
-        if item[0] == find_name and item[2] == find_phone:
+        if item['first_name'] == find_name and item['phone'] == find_phone:
             list_.append(item)
     if list_:
         return list_
@@ -33,7 +33,7 @@ def find_contact(find_list: list) -> list:
         return 'Нет такого контакта, попробуйте еще'
 
 
-def update_contact(update_list: list) -> list:
+def update_in_book(update_list: list) -> list:
     """ Изменение контакта в тел.книге"""
     update_name = input('Введите имя кого вы хотите изменить: ')
     update_phone = input('Введите номер телефона кого вы хотите заменить: ')
@@ -49,6 +49,13 @@ def update_contact(update_list: list) -> list:
     return update_list
 
 
-def del_contact():
+def del_in_book(del_list: list) -> list:
     """ Удаление контакта из телефонной книги"""
-    pass
+    del_name = input('Введите имя кого вы хотите удалить: ')
+    del_phone = input('Введите номер телефона кого вы хотите удалить: ')
+
+    for item in del_list:
+        if item['first_name'] == del_name and item['phone'] == del_phone:
+            del_list.remove(item)
+
+    return del_list

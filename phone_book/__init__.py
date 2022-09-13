@@ -1,27 +1,32 @@
 """ module phone_book logic"""
+from phone_book.user_interface import add_in_book, del_in_book, find_in_book, update_in_book
 from .manage import write_data
 from .manage import read_data
-from .user_interface import add_contact, find_contact, update_contact
-
 
 FILE_NAME = 'phone_book/phone_book.csv'
+
+
+def add_contact_in_book():
+    """ Запись нового контакта"""
+    temp = add_in_book()
+    return write_data(temp, FILE_NAME)
 
 
 def search_contact():
     """Поиск контакта"""
     temp = read_data(FILE_NAME)
-    return find_contact(temp)
+    return find_in_book(temp)
 
 
 def changed_contact():
-    """Изменение контакта"""
+    """Изменение контакта в телефонной книге"""
     temp_list = read_data(FILE_NAME)
-    temp = update_contact(temp_list)
-    # пока ничего не изменяет, надо вписать функцию по изменению и перезаписи всего файла
+    temp = update_in_book(temp_list)
     return write_data(temp, FILE_NAME)
 
 
-def add_contact_in_book():
-    """ Запись нового контакта"""
-    temp = add_contact()
+def remove_contact():
+    """Удаление контакта из телефонной книги"""
+    temp_list = read_data(FILE_NAME)
+    temp = del_in_book(temp_list)
     return write_data(temp, FILE_NAME)
