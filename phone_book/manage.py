@@ -17,6 +17,16 @@ def write_data(list_: list, file: str):
             writer.writerow(line)
 
 
+def changed_data(list_: list, file: str):
+    """ Пишем в файл csv"""
+    with open(file, 'r+', encoding='utf8', newline='') as write_file:
+        fieldnames = ['first_name', 'second_name', 'phone', 'descriptor']
+        writer = csv.DictWriter(
+            write_file, fieldnames=fieldnames, delimiter=' ')
+        for line in list_:
+            writer.writerow(line)
+
+
 def read_data(file: str) -> list:
     """Чтение файла и с возвращением списка списков из каждой строки """
     with open(file, 'r', encoding='utf8') as read_file:
