@@ -2,9 +2,10 @@
         read data from files"""
 import os
 import csv
+from typing import Any
 
 
-def write_data(list_: list, file: str):
+def write_data(list_: list, file: str) -> Any:
     """ Пишем в файл csv первый раз или добавляем"""
     file_exists = os.path.isfile(file)
     with open(file, 'a+', encoding='utf8', newline='') as write_file:
@@ -17,7 +18,7 @@ def write_data(list_: list, file: str):
             writer.writerow(line)
 
 
-def changed_data(list_: list, file: str):
+def changed_data(list_: list, file: str) -> Any:
     """ Пишем в файл csv, при изменении или удалении"""
     with open(file, 'w', encoding='utf8', newline='') as write_file:
         fieldnames = ['first_name', 'second_name', 'phone', 'descriptor']

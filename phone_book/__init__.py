@@ -1,5 +1,6 @@
 """ module phone_book logic"""
 from phone_book.user_interface import add_in_book, del_in_book, find_in_book, update_in_book
+from phone_book.views import set_kind_contact_one, set_kind_contact_two
 from .manage import changed_data, show_data, write_data
 from .manage import read_data
 
@@ -39,9 +40,11 @@ def show_contact():
 
 def send_json_one():
     """ Отправляем весь справочник в файл JSON по заданию формат 1"""
-    pass
+    temp_list = read_data(FILE_NAME)
+    return set_kind_contact_one(temp_list)
 
 
 def send_json_two():
     """ Отправляем весь справочник в файл JSON по заданию формат 2"""
-    pass
+    temp_list = read_data(FILE_NAME)
+    return set_kind_contact_two(temp_list)

@@ -3,24 +3,19 @@
 # Принимает какой то словарь и форматирует в зависимости от ТЗ
 
 
-def set_kind_contact_one(list_):
-    # • под форматами понимаем структуру файлов, например:в файле на одной строке
-    # хранится одна часть записи, пустая строка - разделитель
-    # Фамилия_1
-    # Имя_1
-    # Телефон_1
-    # Описание_1
-
-    # Фамилия_2
-    # Имя_2
-    # Телефон_2
-    # Описание_2
-    pass
+import json
+from typing import Any
 
 
-def set_kind_contact_two(list_):
-    # и т.д.в файле на одной строке хранится все записи, символ разделитель - ;
-    # Фамилия_1,Имя_1,Телефон_1,Описание_1
-    # Фамилия_2,Имя_2,Телефон_2,Описание_2
-    # и т.д.
-    pass
+def set_kind_contact_one(list_: list) -> Any:
+    """Преобразование CSV в JSON - импорт для приведения к формату №1 задания"""
+    with open('first_file.json', 'w', encoding='utf8') as file:
+        json.dump(list_, file, ensure_ascii=False, indent=2)
+
+
+def set_kind_contact_two(list_: list) -> Any:
+    """Преобразование CSV в JSON - импорт для приведения к формату №2 задания"""
+    with open('second_file.json', 'w', encoding='utf8') as file:
+        for d in list_:
+            json.dump(d, file, ensure_ascii=False)
+            file.write('\n')
