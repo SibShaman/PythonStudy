@@ -16,6 +16,6 @@ def set_kind_contact_one(list_: list) -> Any:
 def set_kind_contact_two(list_: list) -> Any:
     """Преобразование CSV в JSON - импорт для приведения к формату №2 задания"""
     with open('second_file.json', 'w', encoding='utf8') as file:
-        for d in list_:
-            json.dump(d, file, ensure_ascii=False)
+        for item in list_:
+            json.dump(item, file, ensure_ascii=False)
             file.write('\n')
