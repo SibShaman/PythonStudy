@@ -1,6 +1,6 @@
 """ module phone_book logic"""
 from phone_book.user_interface import add_in_book, del_in_book, find_in_book, update_in_book
-from .manage import changed_data, write_data
+from .manage import changed_data, show_data, write_data
 from .manage import read_data
 
 FILE_NAME = 'phone_book/phone_book.csv'
@@ -30,3 +30,8 @@ def remove_contact():
     temp_list = read_data(FILE_NAME)
     temp = del_in_book(temp_list)
     return changed_data(temp, FILE_NAME)
+
+
+def show_contact():
+    """ Показать всю телефонную книгу"""
+    return show_data(FILE_NAME)
