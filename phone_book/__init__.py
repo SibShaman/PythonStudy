@@ -35,3 +35,13 @@ def remove_contact():
 def show_contact():
     """ Показать всю телефонную книгу"""
     return show_data(FILE_NAME)
+
+
+def send_json_one():
+    """ Отправляем весь справочник в файл JSON по заданию формат 1"""
+    pass
+
+
+def send_json_two():
+    """ Отправляем весь справочник в файл JSON по заданию формат 2"""
+    pass
