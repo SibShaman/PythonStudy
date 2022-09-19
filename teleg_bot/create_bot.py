@@ -24,4 +24,4 @@ bot = Bot(token=TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
-my_command = CallbackData('function')
+my_command = CallbackData('function', 'action')
