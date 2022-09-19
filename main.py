@@ -2,6 +2,7 @@
 import os
 import pathlib
 import logging
+from typing import Text
 from dotenv import load_dotenv, dotenv_values
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
@@ -23,7 +24,6 @@ bot = Bot(token=TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
-
 my_command = CallbackData('function')
 
 
@@ -32,15 +32,15 @@ async def start_handler(message: types.Message):
     """ Запуск бота с инлайн клавиатурой и выбором действия"""
     row_btns = [
         types.InlineKeyboardButton(
-            text='Добавить контакт', callback_data=my_command.new(function=add_contact_in_book())),
+            text='Добавить контакт', callback_data=('add_contact_in_book')),
         types.InlineKeyboardButton(
-            text='Найти контакт', callback_data=my_command.new(function='find_contact')),
+            text='Найти контакт', callback_data=('find_contact')),
         types.InlineKeyboardButton(
-            text='Изменить контакт', callback_data=my_command.new(function='changed_contact')),
+            text='Изменить контакт', callback_data=('changed_contact')),
         types.InlineKeyboardButton(
-            text='Удалить контакт', callback_data=my_command.new(function='del_contact')),
-        types.InlineKeyboardButton(
-            text='Показать всю книгу', callback_data=my_command.new(function='show_contact')),
+            text='Удалить контакт', callback_data=('del_contact')),
+        # types.InlineKeyboardButton(
+        #     text='Показать всю книгу', callback_data=my_command.new(function='show_contact')),
     ]
     keyboard_markup = types.InlineKeyboardMarkup(row_width=2)
     keyboard_markup.add(*row_btns)
@@ -48,11 +48,12 @@ async def start_handler(message: types.Message):
     await message.answer("PHONE BOOK", reply_markup=keyboard_markup)
 
 
-# @dp.callback_query_handler(my_command.filter())
-# async def button_press(call: types.CallbackQuery, callback_data: dict):
-#     if callback_data.get('add_contact'):
-#         print('hello')
-
+@dp.callback_query_handler(text_contains='add_contact_in_book')
+async def add_content(call: types.CallbackQuery):
+    await bot.edit_message_text(chat_id=call.message.chat.id,
+                                message_id=call.message.message_id,
+                                text="Ты вернулся В главное меню. Жми опять кнопки",
+                                parse_mode='Markdown')
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
