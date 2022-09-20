@@ -11,12 +11,12 @@ async def start_handler(message: types.Message):
             text='Добавить контакт', callback_data=my_command.new(action='add_contact_in_book')),
         types.InlineKeyboardButton(
             text='Найти контакт', callback_data=my_command.new(action='find_contact')),
+        # types.InlineKeyboardButton(
+        #     text='Изменить контакт', callback_data=my_command.new(action='changed_contact')),
         types.InlineKeyboardButton(
-            text='Изменить контакт', callback_data=('changed_contact')),
+            text='Удалить контакт', callback_data=my_command.new(action='del_contact')),
         # types.InlineKeyboardButton(
-        #     text='Удалить контакт', callback_data=('del_contact')),
-        # types.InlineKeyboardButton(
-        #     text='Показать всю книгу', callback_data=my_command.new(function='show_contact')),
+        #     text='Показать всю книгу', callback_data=my_command.new(action='show_contact')),
     ]
     keyboard_markup = types.InlineKeyboardMarkup(row_width=2)
     keyboard_markup.add(*row_btns)
