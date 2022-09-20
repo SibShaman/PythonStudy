@@ -2,6 +2,7 @@
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
+# from main import start_handler
 from teleg_bot.create_bot import dp, my_command
 
 
@@ -30,4 +31,6 @@ async def add_second_name(message: types.Message, state: FSMContext):
     await FSMBase.next()            # переключаемся на следующее состояние amount
     await message.answer('Введите фамилию')
     # добавить проверку на числовое значение этого поля
+
+    # await start_handler(message)  - возврат меню
     await state.finish()
