@@ -6,14 +6,14 @@ from teleg_bot.create_bot import dp, my_command
 
 
 @dp.callback_query_handler(my_command.filter(action='find_contact'))
-async def find_name(call: types.CallbackQuery):
-    """ Добавление в тел.книгу"""
+async def find_data(call: types.CallbackQuery):
+    """Поиск данных в файле хранилища всего справочника - инициализация"""
     await call.message.edit_text('Введите номер телефона')
 
 
 @dp.message_handler()
 async def parse_num_phone(message: types.Message):
-    """Поиск данных в файле хранилище всего справочника"""
+    """Поиск данных в файле хранилища всего справочника"""
     with open('test.csv', 'r', encoding='utf8') as read_file:
         reader = csv.DictReader(read_file, delimiter=' ')
         my_list = []
