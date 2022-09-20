@@ -61,8 +61,8 @@ async def add_description(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['descriptor'] = message.text
 
-    my_dict = await state.get_data()
-
+    my_dict = await state.get_data()  # сохраняем из машины состояний данные
+    # и записываем данные
     file_exists = os.path.isfile('test.csv')
     with open('test.csv', 'a+', encoding='utf8') as write_file:
         fieldnames = ['first_name', 'second_name', 'phone', 'descriptor']
@@ -73,4 +73,4 @@ async def add_description(message: types.Message, state: FSMContext):
         writer.writerow(my_dict)
 
     await state.finish()
-    await start_handler(message)  # - возврат меню
+    await start_handler(message)  # - возврат в меню
