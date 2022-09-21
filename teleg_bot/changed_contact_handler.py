@@ -1,5 +1,4 @@
 """ Handler для изменения контакта в телефонной книге (поиск по номеру телефона)"""
-# import csv
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
@@ -79,7 +78,6 @@ async def changed_description(message: types.Message, state: FSMContext):
         data['descriptor'] = message.text
     my_dict = await state.get_data()
     del my_dict['find_step']
-    print(my_dict)
     changed_list = read_data('test.csv')
     changed_list.append(my_dict)
     changed_data(changed_list, 'test.csv')
