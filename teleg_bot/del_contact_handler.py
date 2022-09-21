@@ -25,15 +25,17 @@ async def del_mydata(call: types.CallbackQuery):
 @dp.message_handler(state=FSMDelContact.first_step)
 async def del_num_phone(message: types.Message, state: FSMContext):
     """Поиск данных в файле хранилища всего справочника и удаление контакта"""
-    my_list = []
+    one_list = []
     with open('test.csv', 'r', encoding='utf8', newline='') as read_file:
         reader = csv.DictReader(read_file, delimiter=' ')
         for item in reader:
-            my_list.append(item)
-    for item in my_list:
-        if item['phone'] == message.text:
-            my_list.remove(item)
-    changed_data(my_list, 'test.csv')
+            one_list.append(item)
+    two_list = []
+    for item in one_list:
+        if item['phone'] != message.text:
+            two_list.append(item)
+
+    changed_data(two_list, 'test.csv')
 
     await state.finish()
 
