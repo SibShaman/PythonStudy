@@ -30,13 +30,12 @@ async def del_num_phone(message: types.Message, state: FSMContext):
         reader = csv.DictReader(read_file, delimiter=' ')
         for item in reader:
             one_list.append(item)
+    # дописать момент если пользователь пытается удалить несуществующий контакт
     two_list = []
     for item in one_list:
         if item['phone'] != message.text:
             two_list.append(item)
-
     changed_data(two_list, 'test.csv')
-
     await state.finish()
 
     await start_handler(message)  # - возврат в меню
