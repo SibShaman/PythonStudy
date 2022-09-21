@@ -1,9 +1,9 @@
 """ Handler для поиска контакта в телефонной книге (по номеру телефона)"""
-import csv
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from main import start_handler
+from phone_book.manage import read_data
 from teleg_bot.create_bot import dp, my_command
 
 
@@ -24,16 +24,17 @@ async def find_data(call: types.CallbackQuery):
 @dp.message_handler(state=FSMFindContact.first_step)
 async def parse_num_phone(message: types.Message, state: FSMContext):
     """Поиск данных в файле хранилища всего справочника"""
-    with open('test.csv', 'r', encoding='utf8') as read_file:
-        reader = csv.DictReader(read_file, delimiter=' ')
-        my_list = []
-        for item in reader:
-            if item['phone'] == message.text:
-                my_list.append(item)
-        if my_list:
-            await message.answer(f'вот контакт который вы искали {my_list}')
-        else:
-            await message.answer('Нет такого контакта, попробуйте еще')
+
+    one_list = read_data('test.csv')
+    two_list = []
+    for item in one_list:
+        if item['phone'] == message.text:
+            two_list.append(item)
+    if two_list:
+        await message.answer(f'вот контакт который вы искали {two_list}')
+    else:
+        await message.answer('Нет такого контакта, попробуйте еще')
+
     await state.finish()
 
     await start_handler(message)  # - возврат в меню

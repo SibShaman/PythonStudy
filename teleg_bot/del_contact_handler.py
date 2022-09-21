@@ -1,10 +1,9 @@
 """Удаление контакта из телефонной книги"""
-import csv
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from main import start_handler
-from phone_book.manage import changed_data
+from phone_book.manage import changed_data, read_data
 from teleg_bot.create_bot import dp, my_command
 
 
@@ -25,11 +24,8 @@ async def del_mydata(call: types.CallbackQuery):
 @dp.message_handler(state=FSMDelContact.first_step)
 async def del_num_phone(message: types.Message, state: FSMContext):
     """Поиск данных в файле хранилища всего справочника и удаление контакта"""
-    one_list = []
-    with open('test.csv', 'r', encoding='utf8', newline='') as read_file:
-        reader = csv.DictReader(read_file, delimiter=' ')
-        for item in reader:
-            one_list.append(item)
+    one_list = read_data('test.csv')
+
     # дописать момент если пользователь пытается удалить несуществующий контакт
     two_list = []
     for item in one_list:
