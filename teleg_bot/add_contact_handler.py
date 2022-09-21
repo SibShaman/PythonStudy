@@ -55,7 +55,7 @@ async def add_phone_namber(message: types.Message, state: FSMContext):
     await message.answer('Введите описание контакта')
 
 
-@dp.message_handler(state=FSMAddContact. descriptor)
+@dp.message_handler(state=FSMAddContact.descriptor)
 async def add_description(message: types.Message, state: FSMContext):
     """ Добавление в тел.книгу - вводим описание и выходим из машины состояний"""
     async with state.proxy() as data:
