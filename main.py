@@ -3,7 +3,7 @@ import os
 import pathlib
 import logging
 from dotenv import load_dotenv, dotenv_values
-from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from aiogram.contrib.middlewares.logging import LoggingMiddleware
 from aiogram.utils.callback_data import CallbackData
 from aiogram import Bot, Dispatcher, executor, types
 
@@ -20,14 +20,17 @@ TOKEN = os.environ.get('TOKEN')
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token=TOKEN)
 
-storage = MemoryStorage()
-dp = Dispatcher(bot, storage=storage)
+
+dp = Dispatcher(bot)
+dp.middleware.setup(LoggingMiddleware())
 
 my_command = CallbackData('function', 'action')
 
+likes = {}
+
 
 @dp.message_handler(commands='start')
-async def start_handler(message: types.Message):
+async def get_keyboard(message: types.Message):
     """ Запуск бота с инлайн клавиатурой и выбором действия"""
     row_btns = [
         types.InlineKeyboardButton(
